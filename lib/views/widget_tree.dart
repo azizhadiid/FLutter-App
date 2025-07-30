@@ -17,7 +17,23 @@ class _WidgetTreeState extends State<WidgetTree> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Hadezer Mapp'), centerTitle: true),
+      appBar: AppBar(
+        title: Text('Hadezer Mapp'),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              isDartkModeNotifier.value = !isDartkModeNotifier.value;
+            },
+            icon: ValueListenableBuilder(
+              valueListenable: isDartkModeNotifier,
+              builder: (context, isDartkMode, child) {
+                return Icon(isDartkMode ? Icons.light_mode : Icons.dark_mode);
+              },
+            ), // Icon
+          ), // IconButton
+        ], // actions
+      ),
       body: ValueListenableBuilder(
         valueListenable: selectedPageNotifier,
         builder: (BuildContext context, dynamic selectedPage, Widget? child) {
