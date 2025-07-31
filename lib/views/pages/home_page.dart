@@ -20,6 +20,7 @@ class HomePage extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
+            SizedBox(height: 10.0),
             HeroWidget(title: 'Hadezer Mapp'), // HeroWidget
             ...List.generate(list.length, (index) {
               return ContainerWidget(
