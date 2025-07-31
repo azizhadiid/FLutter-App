@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/data/constans.dart';
 import 'package:flutter_app/data/notifiers.dart';
 import 'package:flutter_app/views/pages/home_page.dart';
 import 'package:flutter_app/views/pages/profile_page.dart';
 import 'package:flutter_app/views/widgets/navbar_widgets.dart';
 import 'package:flutter_app/views/pages/setting_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 List<Widget> pages = [HomePage(), ProfilePage()];
 
@@ -19,13 +21,18 @@ class _WidgetTreeState extends State<WidgetTree> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
         title: Text('Hadezer Mapp'),
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () {
+            onPressed: () async {
               isDartkModeNotifier.value = !isDartkModeNotifier.value;
+              final SharedPreferences prefs =
+                  await SharedPreferences.getInstance();
+              await prefs.setBool(
+                KConstants.themeModeKey,
+                isDartkModeNotifier.value,
+              );
             },
             icon: ValueListenableBuilder(
               valueListenable: isDartkModeNotifier,

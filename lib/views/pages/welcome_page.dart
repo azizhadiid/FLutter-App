@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/views/pages/login_page.dart';
+import 'package:flutter_app/views/pages/onboarding.dart';
 import 'package:lottie/lottie.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -29,11 +30,9 @@ class WelcomePage extends StatelessWidget {
                 SizedBox(height: 20.0),
                 FilledButton(
                   onPressed: () {
-                    Navigator.pushReplacement(
+                    Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => LoginPage(title: 'Register'),
-                      ),
+                      MaterialPageRoute(builder: (context) => OnboardingPage()),
                     );
                   },
                   style: FilledButton.styleFrom(
