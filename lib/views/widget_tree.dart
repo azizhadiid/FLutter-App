@@ -37,7 +37,9 @@ class _WidgetTreeState extends State<WidgetTree> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SattingPage()),
+                MaterialPageRoute(
+                  builder: (context) => SattingPage(title: 'Settings'),
+                ),
               );
             },
             icon: Icon(Icons.settings),

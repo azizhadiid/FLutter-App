@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class SattingPage extends StatefulWidget {
-  const SattingPage({super.key});
+  const SattingPage({super.key, required this.title});
+
+  final String title;
 
   @override
   State<SattingPage> createState() => _SattingPageState();
@@ -17,7 +19,7 @@ class _SattingPageState extends State<SattingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Setting Page'), centerTitle: true),
+      appBar: AppBar(title: Text(widget.title), centerTitle: true),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
