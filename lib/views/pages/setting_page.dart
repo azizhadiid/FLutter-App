@@ -26,6 +26,41 @@ class _SattingPageState extends State<SattingPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              ElevatedButton(
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      duration: Duration(seconds: 5),
+                      content: Text('Snackbar'),
+                      behavior: SnackBarBehavior.floating,
+                    ),
+                  );
+                },
+                child: Text('Open Snackbar'),
+              ),
+              Divider(color: Colors.teal, thickness: 2.0, endIndent: 200.0),
+              ElevatedButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text('Alert Title'),
+                        content: Text('Alert Content'),
+                        actions: [
+                          FilledButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text('Close'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+                child: Text('Open Dialog'),
+              ),
               DropdownButton(
                 value: menuItem,
                 items: [
