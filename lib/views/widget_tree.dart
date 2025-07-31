@@ -19,6 +19,7 @@ class _WidgetTreeState extends State<WidgetTree> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text('Hadezer Mapp'),
         centerTitle: true,
         actions: [
