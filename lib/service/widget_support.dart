@@ -8,4 +8,8 @@ class AppWidget {
       fontWeight: FontWeight.bold,
     );
   }
+
+  static TextStyle SimpleTextFeildStyle() {
+    return TextStyle(color: Colors.black, fontSize: 18.0);
+  }
 }
