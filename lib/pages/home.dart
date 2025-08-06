@@ -48,7 +48,7 @@ class _HomeState extends State<Home> {
                       SizedBox(height: 5),
                       Text(
                         "Order your favorite food!",
-                        style: AppWidget.SimpleTextFeildStyle(),
+                        style: AppWidget.simpleTextFeildStyle(),
                       ),
                     ],
                   ),
@@ -96,17 +96,17 @@ class _HomeState extends State<Home> {
                 ],
               ),
               SizedBox(height: 20.0),
-              Container(
+              SizedBox(
                 height: 50,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   physics: BouncingScrollPhysics(), // scroll smooth
                   itemCount: categories.length,
                   itemBuilder: (context, index) {
-                    return CategoryTile(
-                      image: categories[index].image!,
-                      name: categories[index].name!,
-                      categoryindex: index.toString(),
+                    return categoryTile(
+                      categories[index].name!,
+                      categories[index].image!,
+                      index.toString(),
                     );
                   },
                 ),
@@ -118,11 +118,11 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget CategoryTile(String name, String image, String categoryindex) {
+  Widget categoryTile(String name, String image, String categoryindex) {
     return GestureDetector(
       onTap: () {
         track = categoryindex.toString();
-        setState(() {});
+        setState(() {}); 
       },
       child: track == categoryindex
           ? Container(
@@ -135,7 +135,7 @@ class _HomeState extends State<Home> {
               child: Row(
                 children: [
                   Lottie.asset(image, height: 40, width: 40, fit: BoxFit.cover),
-                  Text(name, style: AppWidget.WhiteTextFeildStyle()),
+                  Text(name, style: AppWidget.whiteTextFeildStyle()),
                 ],
               ),
             )
@@ -149,7 +149,7 @@ class _HomeState extends State<Home> {
               child: Row(
                 children: [
                   Lottie.asset(image, height: 40, width: 40, fit: BoxFit.cover),
-                  Text(name, style: AppWidget.SimpleTextFeildStyle()),
+                  Text(name, style: AppWidget.simpleTextFeildStyle()),
                 ],
               ),
             ),

@@ -24,13 +24,13 @@ class _OnboardingStateState extends State<OnboardingState> {
               Text(
                 "The Fastest\nFood Delevery",
                 textAlign: TextAlign.center,
-                style: AppWidget.HeadLineTextFeildStyle(),
+                style: AppWidget.headLineTextFeildStyle(),
               ),
               SizedBox(height: 20.0),
               Text(
                 "Makanan yang enak hanya ada di sini, lakukanlah pembelian segera!",
                 textAlign: TextAlign.center,
-                style: AppWidget.SimpleTextFeildStyle(),
+                style: AppWidget.simpleTextFeildStyle(),
               ),
               SizedBox(height: 30.0),
               Container(
