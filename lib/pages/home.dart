@@ -13,6 +13,9 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List<CategoryModel> categories = [];
+
+  String track = "0";
+
   @override
   void initState() {
     categories = getCategories();
@@ -103,6 +106,7 @@ class _HomeState extends State<Home> {
                     return CategoryTile(
                       image: categories[index].image!,
                       name: categories[index].name!,
+                      categoryindex: index.toString(),
                     );
                   },
                 ),
@@ -113,32 +117,42 @@ class _HomeState extends State<Home> {
       ),
     );
   }
-}
 
-class CategoryTile extends StatefulWidget {
-  String name, image;
-  CategoryTile({required this.image, required this.name});
-
-  @override
-  State<CategoryTile> createState() => _CategoryTileState();
-}
-
-class _CategoryTileState extends State<CategoryTile> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(right: 20.0),
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      decoration: BoxDecoration(
-        color: Color(0xffef2b39),
-        borderRadius: BorderRadius.circular(30),
-      ),
-      child: Row(
-        children: [
-          Lottie.asset(widget.image, height: 40, width: 40, fit: BoxFit.cover),
-          Text(widget.name, style: AppWidget.WhiteTextFeildStyle()),
-        ],
-      ),
+  Widget CategoryTile(String name, String image, String categoryindex) {
+    return GestureDetector(
+      onTap: () {
+        track = categoryindex.toString();
+        setState(() {});
+      },
+      child: track == categoryindex
+          ? Container(
+              margin: EdgeInsets.only(right: 20.0),
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              decoration: BoxDecoration(
+                color: Color(0xffef2b39),
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: Row(
+                children: [
+                  Lottie.asset(image, height: 40, width: 40, fit: BoxFit.cover),
+                  Text(name, style: AppWidget.WhiteTextFeildStyle()),
+                ],
+              ),
+            )
+          : Container(
+              margin: EdgeInsets.only(right: 20.0),
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              decoration: BoxDecoration(
+                color: Color(0xFFececf8),
+                borderRadius: BorderRadius.circular(30.0),
+              ),
+              child: Row(
+                children: [
+                  Lottie.asset(image, height: 40, width: 40, fit: BoxFit.cover),
+                  Text(name, style: AppWidget.SimpleTextFeildStyle()),
+                ],
+              ),
+            ),
     );
   }
 }
