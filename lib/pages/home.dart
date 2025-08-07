@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/model/burger_model.dart';
 import 'package:flutter_app/model/category_model.dart';
+import 'package:flutter_app/model/donut_model.dart';
 import 'package:flutter_app/model/pizza_model.dart';
+import 'package:flutter_app/model/ramen_model.dart';
+import 'package:flutter_app/service/burger_data.dart';
 import 'package:flutter_app/service/category_data.dart';
+import 'package:flutter_app/service/donut_data.dart';
 import 'package:flutter_app/service/pizza_data.dart';
+import 'package:flutter_app/service/ramen_data.dart';
 import 'package:flutter_app/service/widget_support.dart';
 import 'package:lottie/lottie.dart';
 
@@ -16,12 +22,18 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   List<CategoryModel> categories = [];
   List<PizzaModel> pizza = [];
+  List<DonutModel> donut = [];
+  List<BurgerModel> burger = [];
+  List<RamenModel> ramen = [];
   String track = "0";
 
   @override
   void initState() {
     categories = getCategories();
     pizza = getPizza();
+    donut = getDonut();
+    burger = getBurger();
+    ramen = getRamen();
     super.initState();
   }
 
@@ -115,25 +127,87 @@ class _HomeState extends State<Home> {
                 ),
               ),
               SizedBox(height: 20.0),
-              GridView.builder(
-                shrinkWrap: true,
-                physics:
-                    NeverScrollableScrollPhysics(), // karena pakai SingleChildScrollView
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.9,
-                  mainAxisSpacing: 10.0,
-                  crossAxisSpacing: 10.0,
-                ),
-                itemCount: pizza.length,
-                itemBuilder: (context, index) {
-                  return FoodTile(
-                    pizza[index].name!,
-                    pizza[index].image!,
-                    pizza[index].price!,
-                  );
-                },
-              ),
+              track == "0"
+                  ? GridView.builder(
+                      shrinkWrap: true,
+                      physics:
+                          NeverScrollableScrollPhysics(), // karena pakai SingleChildScrollView
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 0.9,
+                        mainAxisSpacing: 10.0,
+                        crossAxisSpacing: 10.0,
+                      ),
+                      itemCount: pizza.length,
+                      itemBuilder: (context, index) {
+                        return foodTile(
+                          pizza[index].name!,
+                          pizza[index].image!,
+                          pizza[index].price!,
+                        );
+                      },
+                    )
+                  : track == "1"
+                  ? GridView.builder(
+                      shrinkWrap: true,
+                      physics:
+                          NeverScrollableScrollPhysics(), // karena pakai SingleChildScrollView
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 0.9,
+                        mainAxisSpacing: 10.0,
+                        crossAxisSpacing: 10.0,
+                      ),
+                      itemCount: donut.length,
+                      itemBuilder: (context, index) {
+                        return foodTile(
+                          donut[index].name!,
+                          donut[index].image!,
+                          donut[index].price!,
+                        );
+                      },
+                    )
+                  : track == "2"
+                  ? GridView.builder(
+                      shrinkWrap: true,
+                      physics:
+                          NeverScrollableScrollPhysics(), // karena pakai SingleChildScrollView
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 0.9,
+                        mainAxisSpacing: 10.0,
+                        crossAxisSpacing: 10.0,
+                      ),
+                      itemCount: burger.length,
+                      itemBuilder: (context, index) {
+                        return foodTile(
+                          burger[index].name!,
+                          burger[index].image!,
+                          burger[index].price!,
+                        );
+                      },
+                    )
+                  : track == "3"
+                  ? GridView.builder(
+                      shrinkWrap: true,
+                      physics:
+                          NeverScrollableScrollPhysics(), // karena pakai SingleChildScrollView
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 0.9,
+                        mainAxisSpacing: 10.0,
+                        crossAxisSpacing: 10.0,
+                      ),
+                      itemCount: ramen.length,
+                      itemBuilder: (context, index) {
+                        return foodTile(
+                          ramen[index].name!,
+                          ramen[index].image!,
+                          ramen[index].price!,
+                        );
+                      },
+                    )
+                  : Container(),
             ],
           ),
         ),
@@ -141,8 +215,8 @@ class _HomeState extends State<Home> {
     );
   }
 
-  // Widget for FoodTile
-  Widget FoodTile(String name, String image, String price) {
+  // Widget for foodTile
+  Widget foodTile(String name, String image, String price) {
     return Container(
       margin: EdgeInsets.only(right: 20.0),
       padding: EdgeInsets.only(left: 10.0, top: 10.0),
@@ -162,7 +236,7 @@ class _HomeState extends State<Home> {
             ),
           ),
           Text(name, style: AppWidget.boldTextField()),
-          Text("\$" + price, style: AppWidget.priceTextField()),
+          Text("\$$price", style: AppWidget.priceTextField()),
           Spacer(),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
