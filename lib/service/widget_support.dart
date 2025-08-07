@@ -20,4 +20,20 @@ class AppWidget {
       fontWeight: FontWeight.bold,
     );
   }
+
+  static TextStyle boldTextField() {
+    return TextStyle(
+      color: Colors.black,
+      fontSize: 20.0,
+      fontWeight: FontWeight.bold,
+    );
+  }
+
+  static TextStyle priceTextField() {
+    return TextStyle(
+      color: Colors.black38,
+      fontSize: 24.0,
+      fontWeight: FontWeight.bold,
+    );
+  }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/model/category_model.dart';
+import 'package:flutter_app/model/pizza_model.dart';
 import 'package:flutter_app/service/category_data.dart';
+import 'package:flutter_app/service/pizza_data.dart';
 import 'package:flutter_app/service/widget_support.dart';
 import 'package:lottie/lottie.dart';
 
@@ -13,12 +15,13 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List<CategoryModel> categories = [];
-
+  List<PizzaModel> pizza = [];
   String track = "0";
 
   @override
   void initState() {
     categories = getCategories();
+    pizza = getPizza();
     super.initState();
   }
 
@@ -97,7 +100,7 @@ class _HomeState extends State<Home> {
               ),
               SizedBox(height: 20.0),
               SizedBox(
-                height: 50,
+                height: 70,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   physics: BouncingScrollPhysics(), // scroll smooth
@@ -111,6 +114,26 @@ class _HomeState extends State<Home> {
                   },
                 ),
               ),
+              SizedBox(height: 20.0),
+              GridView.builder(
+                shrinkWrap: true,
+                physics:
+                    NeverScrollableScrollPhysics(), // karena pakai SingleChildScrollView
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 0.9,
+                  mainAxisSpacing: 10.0,
+                  crossAxisSpacing: 10.0,
+                ),
+                itemCount: pizza.length,
+                itemBuilder: (context, index) {
+                  return FoodTile(
+                    pizza[index].name!,
+                    pizza[index].image!,
+                    pizza[index].price!,
+                  );
+                },
+              ),
             ],
           ),
         ),
@@ -118,30 +141,87 @@ class _HomeState extends State<Home> {
     );
   }
 
+  // Widget for FoodTile
+  Widget FoodTile(String name, String image, String price) {
+    return Container(
+      margin: EdgeInsets.only(right: 20.0),
+      padding: EdgeInsets.only(left: 10.0, top: 10.0),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.black38),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Center(
+            child: Lottie.asset(
+              image,
+              height: 100,
+              width: 100,
+              fit: BoxFit.contain,
+            ),
+          ),
+          Text(name, style: AppWidget.boldTextField()),
+          Text("\$" + price, style: AppWidget.priceTextField()),
+          Spacer(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                height: 50,
+                width: 80,
+                decoration: BoxDecoration(
+                  color: Color(0xffef2b39),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    bottomRight: Radius.circular(20),
+                  ),
+                ),
+                child: Icon(Icons.arrow_forward, color: Colors.white, size: 30),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Widget for Category Tile
   Widget categoryTile(String name, String image, String categoryindex) {
     return GestureDetector(
       onTap: () {
         track = categoryindex.toString();
-        setState(() {}); 
+        setState(() {});
       },
       child: track == categoryindex
           ? Container(
-              margin: EdgeInsets.only(right: 20.0),
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              decoration: BoxDecoration(
-                color: Color(0xffef2b39),
+              margin: EdgeInsets.only(right: 20.0, bottom: 10.0),
+              child: Material(
+                elevation: 3.0,
                 borderRadius: BorderRadius.circular(30),
-              ),
-              child: Row(
-                children: [
-                  Lottie.asset(image, height: 40, width: 40, fit: BoxFit.cover),
-                  Text(name, style: AppWidget.whiteTextFeildStyle()),
-                ],
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: Color(0xffef2b39),
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: Row(
+                    children: [
+                      Lottie.asset(
+                        image,
+                        height: 40,
+                        width: 40,
+                        fit: BoxFit.cover,
+                      ),
+                      Text(name, style: AppWidget.whiteTextFeildStyle()),
+                    ],
+                  ),
+                ),
               ),
             )
           : Container(
-              margin: EdgeInsets.only(right: 20.0),
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              margin: EdgeInsets.only(right: 20.0, bottom: 10.0),
+              padding: EdgeInsets.only(right: 20.0, left: 20.0),
               decoration: BoxDecoration(
                 color: Color(0xFFececf8),
                 borderRadius: BorderRadius.circular(30.0),
