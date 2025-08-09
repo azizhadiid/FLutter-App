@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_app/pages/home.dart';
+import 'package:flutter_app/pages/onboarding.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
       ),
-      home: Home(),
+      home: OnboardingState(),
     );
   }
 }

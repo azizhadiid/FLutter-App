@@ -134,7 +134,7 @@ class _HomeState extends State<Home> {
                           NeverScrollableScrollPhysics(), // karena pakai SingleChildScrollView
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        childAspectRatio: 0.9,
+                        childAspectRatio: 0.7,
                         mainAxisSpacing: 10.0,
                         crossAxisSpacing: 10.0,
                       ),
@@ -154,7 +154,7 @@ class _HomeState extends State<Home> {
                           NeverScrollableScrollPhysics(), // karena pakai SingleChildScrollView
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        childAspectRatio: 0.9,
+                        childAspectRatio: 0.7,
                         mainAxisSpacing: 10.0,
                         crossAxisSpacing: 10.0,
                       ),
@@ -174,7 +174,7 @@ class _HomeState extends State<Home> {
                           NeverScrollableScrollPhysics(), // karena pakai SingleChildScrollView
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        childAspectRatio: 0.9,
+                        childAspectRatio: 0.7,
                         mainAxisSpacing: 10.0,
                         crossAxisSpacing: 10.0,
                       ),
@@ -208,6 +208,7 @@ class _HomeState extends State<Home> {
                       },
                     )
                   : Container(),
+              SizedBox(height: 70.0),
             ],
           ),
         ),
