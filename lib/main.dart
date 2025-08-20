@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/flutter/alert.dart';
+import 'package:flutter_app/flutter/textfield.dart';
 
 void main() {
   runApp(const MyApp());
@@ -8,35 +8,18 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter App',
-      theme: ThemeData(colorSchemeSeed: const Color.fromARGB(255, 1, 51, 19)),
-      home: const HomePage(),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Home Page")),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const DialogExample()),
-            );
-          },
-          child: const Text("Go to Alert Page"),
-        ),
+      theme: ThemeData(
+        colorSchemeSeed: const Color.fromARGB(255, 1, 51, 19),
+        useMaterial3: true,
+      ),
+      home: Scaffold(
+        appBar: AppBar(title: const Text("Obscured TextField Sample")),
+        body: const Center(child: ObscuredTextFieldSample()),
       ),
     );
   }
