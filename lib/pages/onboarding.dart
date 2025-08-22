@@ -12,7 +12,9 @@ class _OnboardingState extends State<Onboarding> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: Column(children: [Image.asset("assets/img/onboard.png")]),
+        child: Column(
+          children: [Image.asset("assets/img/recycle_app/onboarding.png")],
+        ),
       ),
     );
   }
