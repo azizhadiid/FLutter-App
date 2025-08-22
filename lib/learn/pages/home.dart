@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/model/burger_model.dart';
-import 'package:flutter_app/model/category_model.dart';
-import 'package:flutter_app/model/donut_model.dart';
-import 'package:flutter_app/model/pizza_model.dart';
-import 'package:flutter_app/model/ramen_model.dart';
-import 'package:flutter_app/service/burger_data.dart';
-import 'package:flutter_app/service/category_data.dart';
-import 'package:flutter_app/service/donut_data.dart';
-import 'package:flutter_app/service/pizza_data.dart';
-import 'package:flutter_app/service/ramen_data.dart';
-import 'package:flutter_app/service/widget_support.dart';
+import 'package:flutter_app/learn/model/burger_model.dart';
+import 'package:flutter_app/learn/model/category_model.dart';
+import 'package:flutter_app/learn/model/donut_model.dart';
+import 'package:flutter_app/learn/model/pizza_model.dart';
+import 'package:flutter_app/learn/model/ramen_model.dart';
+import 'package:flutter_app/learn/service/burger_data.dart';
+import 'package:flutter_app/learn/service/category_data.dart';
+import 'package:flutter_app/learn/service/donut_data.dart';
+import 'package:flutter_app/learn/service/pizza_data.dart';
+import 'package:flutter_app/learn/service/ramen_data.dart';
+import 'package:flutter_app/learn/service/widget_support.dart';
 import 'package:lottie/lottie.dart';
 
 class Home extends StatefulWidget {

@@ -1,4 +1,4 @@
-import 'package:flutter_app/model/ramen_model.dart';
+import 'package:flutter_app/learn/model/ramen_model.dart';
 
 List<RamenModel> getRamen() {
   List<RamenModel> ramen = [];

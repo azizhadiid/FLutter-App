@@ -1,4 +1,4 @@
-import 'package:flutter_app/model/burger_model.dart';
+import 'package:flutter_app/learn/model/burger_model.dart';
 
 List<BurgerModel> getBurger() {
   List<BurgerModel> burger = [];
