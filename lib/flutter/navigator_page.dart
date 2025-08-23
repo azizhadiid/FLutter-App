@@ -70,11 +70,11 @@ class _HomeState extends State<Home> with TickerProviderStateMixin<Home> {
   @override
   Widget build(BuildContext context) {
     return NavigatorPopHandler(
-      onPop: () {
-        final NavigatorState navigator =
-            navigatorKeys[selectedIndex].currentState!;
-        navigator.pop();
-      },
+      // onPop: () {
+      //   final NavigatorState navigator =
+      //       navigatorKeys[selectedIndex].currentState!;
+      //   navigator.pop();
+      // },
       child: Scaffold(
         body: SafeArea(
           top: false,
@@ -240,11 +240,11 @@ class ListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const int itemCount = 50;
-    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+    // final ColorScheme colorScheme = Theme.of(context).colorScheme;
     final ButtonStyle buttonStyle = OutlinedButton.styleFrom(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
-        side: BorderSide(color: colorScheme.onSurface.withOpacity(0.12)),
+        // side: BorderSide(color: colorScheme.onSurface.withOpacity(0.12)),
       ),
       foregroundColor: destination.color,
       fixedSize: const Size.fromHeight(64),

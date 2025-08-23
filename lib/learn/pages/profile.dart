@@ -71,7 +71,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                           border: Border.all(color: Colors.white, width: 4),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.2),
+                              // color: Colors.black.withOpacity(0.2),
                               spreadRadius: 2,
                               blurRadius: 10,
                               offset: Offset(0, 5),
@@ -100,7 +100,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                       Text(
                         "Food Lover",
                         style: TextStyle(
-                          color: Colors.white.withOpacity(0.8),
+                          // color: Colors.white.withOpacity(0.8),
                           fontSize: 14,
                         ),
                       ),
@@ -163,7 +163,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                         borderRadius: BorderRadius.circular(15),
                         boxShadow: [
                           BoxShadow(
-                            color: Color(0xffef2b39).withOpacity(0.3),
+                            // color: Color(0xffef2b39).withOpacity(0.3),
                             spreadRadius: 1,
                             blurRadius: 8,
                             offset: Offset(0, 4),
@@ -219,7 +219,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
         borderRadius: BorderRadius.circular(15),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            // color: Colors.black.withOpacity(0.05),
             spreadRadius: 1,
             blurRadius: 10,
             offset: Offset(0, 3),
@@ -238,7 +238,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                 Container(
                   padding: EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: Color(0xffef2b39).withOpacity(0.1),
+                    // color: Color(0xffef2b39).withOpacity(0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Icon(icon, color: Color(0xffef2b39), size: 24),
