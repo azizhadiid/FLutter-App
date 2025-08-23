@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class AppWidget {
   static TextStyle healineTextStytle(double size) {
@@ -21,6 +20,14 @@ class AppWidget {
   static TextStyle whiteTextStytle(double size) {
     return TextStyle(
       color: Colors.white,
+      fontSize: size,
+      fontWeight: FontWeight.bold,
+    );
+  }
+
+  static TextStyle greenTextStytle(double size) {
+    return TextStyle(
+      color: Colors.green,
       fontSize: size,
       fontWeight: FontWeight.bold,
     );
