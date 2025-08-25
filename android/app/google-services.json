@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "610102116558",
-    "project_id": "fluttercrud-c50fd",
-    "storage_bucket": "fluttercrud-c50fd.firebasestorage.app"
+    "project_number": "221359876606",
+    "project_id": "recycleapp-2421a",
+    "storage_bucket": "recycleapp-2421a.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:610102116558:android:4acb0682ac1a198f08509f",
+        "mobilesdk_app_id": "1:221359876606:android:92300677ffa054d7e2f8af",
         "android_client_info": {
-          "package_name": "com.example.flutterapp"
+          "package_name": "com.example.flutter_app"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAyHWnvln05GGdq4U7l5MZk09KEPnIYuKA"
+          "current_key": "AIzaSyAKiH4acUVVrUcGR3ekd1cQusZ5PN4KD6Y"
         }
       ],
       "services": {
