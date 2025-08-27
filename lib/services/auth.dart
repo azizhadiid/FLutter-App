@@ -5,49 +5,58 @@ import 'package:flutter_app/services/database.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthMethods {
-  Future<UserCredential?> signInWithGoogle() async {
+  signInWithGoogle(BuildContext context) async {
     try {
-      final firebaseAuth = FirebaseAuth.instance;
+      final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+      final GoogleSignIn googleSignIn = GoogleSignIn();
 
-      // ✅ pakai constructor normal, bukan .standard
-      final googleSignIn = GoogleSignIn(scopes: ['email']);
+      final GoogleSignInAccount? googleSignInAccount = await googleSignIn
+          .signIn();
 
-      final googleUser = await googleSignIn.signIn();
-      if (googleUser == null) return null; // user batal login
+      if (googleSignInAccount == null) {
+        // User canceled the sign-in process
+        return;
+      }
 
-      final googleAuth = await googleUser.authentication;
+      final GoogleSignInAuthentication? googleSignInAuthentication =
+          await googleSignInAccount.authentication;
 
-      final credential = GoogleAuthProvider.credential(
-        idToken: googleAuth.idToken,
-        accessToken: googleAuth.accessToken,
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        idToken: googleSignInAuthentication?.idToken,
+        accessToken: googleSignInAuthentication?.accessToken,
       );
 
-      final result = await firebaseAuth.signInWithCredential(credential);
+      UserCredential result = await firebaseAuth.signInWithCredential(
+        credential,
+      );
 
-      final userDetails = result.user;
+      User? userDetails = result.user;
+
       if (userDetails != null) {
         Map<String, dynamic> userInfoMap = {
           "email": userDetails.email,
           "name": userDetails.displayName,
-          "imgUrl": userDetails.photoURL,
-          "id": userDetails.uid,
+          "image": userDetails.photoURL,
+          "Id": userDetails.uid,
         };
 
+        // Add user info to database
         await DatabaseMethods().addUserInfo(userInfoMap, userDetails.uid);
+
+        // Navigate to Home page
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => Home()),
+        );
+      } else {
+        print("User details are null after sign-in.");
       }
-
-      return result;
     } catch (e) {
-      debugPrint("Error signInWithGoogle: $e");
-      return null;
+      print("Error during Google sign-in: $e");
+      // You can also show a SnackBar or AlertDialog to the user here
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Error: $e')));
     }
-  }
-
-  Future<void> signOut() async {
-    final firebaseAuth = FirebaseAuth.instance;
-    final googleSignIn = GoogleSignIn();
-
-    await googleSignIn.signOut();
-    await firebaseAuth.signOut();
   }
 }

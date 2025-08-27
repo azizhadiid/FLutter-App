@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/services/auth.dart';
 import 'package:flutter_app/services/widget_support.dart';
 
 class Login extends StatefulWidget {
@@ -47,44 +48,49 @@ class _LoginState extends State<Login> {
 
             // Tombol
             SizedBox(height: 30.0),
-            Material(
-              color: Colors.transparent, // biar bayangannya kelihatan
-              child: Container(
-                height: 90,
-                margin: EdgeInsets.only(left: 20.0, right: 20.0),
-                padding: EdgeInsets.only(left: 20.0),
-                decoration: BoxDecoration(
-                  color: Colors.green,
-                  borderRadius: BorderRadius.circular(40),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.2), // warna bayangan
-                      blurRadius: 10, // seberapa blur
-                      offset: Offset(0, 5), // arah bayangan (x, y)
-                    ),
-                  ],
-                ),
-                child: Row(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(60),
+            GestureDetector(
+              onTap: () {
+                AuthMethods().signInWithGoogle(context);
+              },
+              child: Material(
+                color: Colors.transparent, // biar bayangannya kelihatan
+                child: Container(
+                  height: 90,
+                  margin: EdgeInsets.only(left: 20.0, right: 20.0),
+                  padding: EdgeInsets.only(left: 20.0),
+                  decoration: BoxDecoration(
+                    color: Colors.green,
+                    borderRadius: BorderRadius.circular(40),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2), // warna bayangan
+                        blurRadius: 10, // seberapa blur
+                        offset: Offset(0, 5), // arah bayangan (x, y)
                       ),
-                      child: Image.asset(
-                        "assets/img/recycle_app/google.png",
-                        height: 50,
-                        width: 50,
-                        fit: BoxFit.cover,
+                    ],
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(60),
+                        ),
+                        child: Image.asset(
+                          "assets/img/recycle_app/google.png",
+                          height: 50,
+                          width: 50,
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                    ),
-                    SizedBox(width: 20.0),
-                    Text(
-                      "Sign in with Google",
-                      style: AppWidget.whiteTextStytle(25.0),
-                    ),
-                  ],
+                      SizedBox(width: 20.0),
+                      Text(
+                        "Sign in with Google",
+                        style: AppWidget.whiteTextStytle(25.0),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
