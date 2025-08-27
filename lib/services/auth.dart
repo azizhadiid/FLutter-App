@@ -1,14 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/learn/pages/home.dart';
+import 'package:flutter_app/services/database.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthMethods {
-  Future<UserCredential?> signInWithGoogle(BuildContext context) async {
+  Future<UserCredential?> signInWithGoogle() async {
     try {
       final firebaseAuth = FirebaseAuth.instance;
 
-      // Gunakan named constructor versi terbaru
-      final googleSignIn = GoogleSignIn.standard(scopes: ['email']);
+      // ✅ pakai constructor normal, bukan .standard
+      final googleSignIn = GoogleSignIn(scopes: ['email']);
 
       final googleUser = await googleSignIn.signIn();
       if (googleUser == null) return null; // user batal login
@@ -24,18 +26,28 @@ class AuthMethods {
 
       final userDetails = result.user;
       if (userDetails != null) {
-        final userInfoMap = {
+        Map<String, dynamic> userInfoMap = {
           "email": userDetails.email,
           "name": userDetails.displayName,
-          "image": userDetails.photoURL,
+          "imgUrl": userDetails.photoURL,
           "id": userDetails.uid,
         };
-        // Gunakan userInfoMap sesuai kebutuhan...
+
+        await DatabaseMethods().addUserInfo(userInfoMap, userDetails.uid);
       }
+
       return result;
     } catch (e) {
-      debugPrint('Error signInWithGoogle: $e');
+      debugPrint("Error signInWithGoogle: $e");
       return null;
     }
+  }
+
+  Future<void> signOut() async {
+    final firebaseAuth = FirebaseAuth.instance;
+    final googleSignIn = GoogleSignIn();
+
+    await googleSignIn.signOut();
+    await firebaseAuth.signOut();
   }
 }
